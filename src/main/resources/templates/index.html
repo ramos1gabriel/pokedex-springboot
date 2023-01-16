@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+		<link rel="stylesheet" th:href="@{/css/style.css}"/>
+		<link rel="stylesheet" th:href="@{/css/tipos.css}"/>
+		<script type="text/javascript" th:src="@{/js/pokedex.js}"></script>
+		<title>Pokedex Java</title>
+	</head>
+	<body>
+		<h1>Pokedex Java</h1>
+	    <div class="poke-container" id="poke-container">
+	      
+		      <!-- POKEMON -->
+			<div class="poke-card" th:each="pokemon : ${pokemons}" th:id="${pokemonStat.index}">
+				<div th:classappend="'pokemon '+${pokemon.types[0]}">
+					<div class="img-container">
+						<img th:src="${pokemon.imagemUrl}"/>
+					</div>
+					<div class="info">
+						<span class="type" th:text="'#'+${pokemon.order}"></span>
+						<h3 class="name" th:text="${pokemon.nome}"></h3>
+					
+						<!-- TIPOS -->
+						<small th:each="tipo : ${pokemon.types}" th:class="'number '+${tipo}"><span th:text="${tipo}"></span></small>
+					</div>
+				</div>
+			</div>
+	    </div>
+	    <input type="button" value="Carregar mais" onclick="carregarPokemonsAjax()">
+		<div id="loading" style="display:none"><img src="images/loading.gif" id="loading-image"/></div>
+	</body>
+</html>

@@ -1,0 +1,16 @@
+<div id="poke-card" th:each="pokemon : ${pokemons}" th:fragment="pokemonTable"  xmlns:th="http://www.thymeleaf.org">
+	<div class="pokemon ${pokemon.types[0]}">
+		<div class="img-container">
+			<img th:src="${pokemon.imagemUrl}"/>
+		</div>
+		<div class="info">
+			<span class="type" th:text="'#'+${pokemon.order}"></span>
+			<h3 class="name" th:text="${pokemon.name}"></h3>
+		
+			<!-- TIPOS -->
+			<div id="tipos" th:each="tipo : ${pokemons.types}">
+				<small class="number ${tipo}"><span th:text="${tipo}"></span></small>
+			</div>
+		</div>
+	</div>
+</div>
